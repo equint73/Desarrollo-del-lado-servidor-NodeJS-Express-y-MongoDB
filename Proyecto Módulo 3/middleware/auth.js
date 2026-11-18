@@ -1,0 +1,3 @@
+const jwt=require('jsonwebtoken'),User=require('../models/user');
+exports.requireJwt=async(req,res,next)=>{const [kind,token]=String(req.headers.authorization||'').split(' ');if(kind!=='Bearer'||!token)return res.status(401).json({error:'No autenticado. Envia Authorization: Bearer <token>.'});try{const p=jwt.verify(token,process.env.JWT_SECRET),u=await User.findById(p.sub);if(!u||!u.verificado)return res.status(401).json({error:'Token inválido o usuario no verificado.'});req.user=u;next()}catch(e){res.status(401).json({error:'Token inválido o expirado.'})}};
+exports.requireLogin=(req,res,next)=>req.isAuthenticated&&req.isAuthenticated()?next():(req.flash('error','Debes iniciar sesión para acceder.'),res.redirect('/login'));
