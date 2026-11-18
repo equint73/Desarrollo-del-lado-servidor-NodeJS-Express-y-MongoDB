@@ -1,0 +1,11 @@
+const express=require('express');
+const path=require('path');
+const bicicletas=require('./routes/bicicletas');
+const app=express();
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname,'public')));
+app.get('/bienvenida',(req,res)=>res.send('<h1>Welcome to Express</h1><p>Red Bicicletas API funcionando.</p>'));
+app.use('/api/bicicletas',bicicletas);
+app.use((req,res)=>res.status(404).json({error:'Ruta no encontrada'}));
+module.exports=app;

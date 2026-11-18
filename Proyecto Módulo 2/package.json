@@ -1,0 +1,20 @@
+{
+  "name": "red-bicicletas",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "devstart": "nodemon server.js",
+    "test": "jasmine",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "jasmine": "^5.6.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
+  }
+}

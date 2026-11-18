@@ -1,0 +1,39 @@
+RED BICICLETAS - API REST Y PRUEBAS JASMINE
+
+Requisitos: Node.js, MongoDB Community Server local, MongoDB Compass y Postman.
+
+INSTALACION
+1. Abrir esta carpeta en Visual Studio Code.
+2. Ejecutar npm install.
+3. Encender el servicio local de MongoDB.
+4. La conexion usada es mongodb://127.0.0.1:27017/red_bicicletas
+
+CREAR DOCUMENTOS PARA COMPASS
+Ejecutar npm run seed. Se insertan dos bicicletas.
+En MongoDB Compass conectar con mongodb://127.0.0.1:27017 y abrir la base red_bicicletas, coleccion bicicletas.
+
+INICIAR SERVIDOR
+npm run devstart
+Abrir http://localhost:3000
+
+EJECUTAR PRUEBAS
+Con MongoDB encendido ejecutar npm test.
+- spec/bicicleta_api_test.spec.js prueba GET, GET por ID, POST, PUT y DELETE.
+- spec/models/bicicleta.spec.js prueba persistencia y validaciones del modelo.
+Las pruebas limpian los documentos de prueba al finalizar. Para volver a ver dos documentos de demostracion en Compass, ejecutar npm run seed.
+
+API
+GET /api/bicicletas
+GET /api/bicicletas/:id
+POST /api/bicicletas
+PUT /api/bicicletas/:id
+DELETE /api/bicicletas/:id
+
+POST JSON:
+{"codigo":"BICI-003","color":"Verde","ubicacion":{"lat":14.1020,"lng":-87.2050},"disponible":true}
+
+POSTMAN
+Importar postman/Bicicletas-API.postman_collection.json.
+Base URL: http://localhost:3000
+
+La base red_bicicletas se crea automaticamente al insertar el primer documento. El mapa usa Leaflet/OpenStreetMap y requiere Internet.
