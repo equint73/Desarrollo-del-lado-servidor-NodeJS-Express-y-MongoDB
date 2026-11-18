@@ -1,0 +1,106 @@
+{
+  "info": {
+    "_postman_id": "a94a8dd0-22d1-4c0b-a401-8e7b7b1f8f10",
+    "name": "Bicicletas API",
+    "description": "Pruebas CRUD. Inicia el servidor antes de ejecutar.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "bicicletaId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Bienvenida",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/bienvenida"
+      }
+    },
+    {
+      "name": "Listar bicicletas",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/bicicletas"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const d=pm.response.json(); if(d.length) pm.collectionVariables.set('bicicletaId', d[0]._id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultar por ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/bicicletas/{{bicicletaId}}"
+      }
+    },
+    {
+      "name": "Crear bicicleta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"BICI-POSTMAN-01\",\n  \"color\": \"Verde\",\n  \"ubicacion\": {\n    \"lat\": 14.102,\n    \"lng\": -87.205\n  },\n  \"disponible\": true\n}"
+        },
+        "url": "{{baseUrl}}/api/bicicletas"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+              "pm.collectionVariables.set('bicicletaId', pm.response.json()._id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Actualizar bicicleta",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"color\": \"Verde actualizada\",\n  \"disponible\": false\n}"
+        },
+        "url": "{{baseUrl}}/api/bicicletas/{{bicicletaId}}"
+      }
+    },
+    {
+      "name": "Eliminar bicicleta",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/bicicletas/{{bicicletaId}}"
+      }
+    }
+  ]
+}

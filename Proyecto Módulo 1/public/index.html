@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicicletas API - Tegucigalpa</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div><p class="etiqueta">PROYECTO NODE.JS + EXPRESS</p><h1>Welcome to Express</h1>
+      <p>Panel de ubicaciones de bicicletas en Tegucigalpa</p></div>
+    <span class="estado"><i></i> Servidor activo</span>
+  </header>
+  <main class="contenido">
+    <section class="intro"><div><h2>Mapa de bicicletas</h2>
+      <p>Las bicicletas registradas se muestran con marcadores consultados desde la API.</p></div>
+      <button id="recargar" type="button">Actualizar mapa</button></section>
+    <div id="mapa" aria-label="Mapa de ubicaciones de bicicletas"></div>
+    <section class="panel"><h2>Bicicletas registradas</h2>
+      <p id="mensaje">Cargando bicicletas...</p><div id="lista" class="lista"></div></section>
+  </main>
+  <footer>Proyecto académico · Node.js, Express y MongoDB en memoria</footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="/js/mapa.js"></script>
+</body>
+</html>

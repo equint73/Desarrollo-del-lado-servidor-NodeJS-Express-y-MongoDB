@@ -1,0 +1,64 @@
+PROYECTO: BICICLETAS API
+
+DESCRIPCION
+Aplicacion web desarrollada con Node.js y Express para visualizar bicicletas en un mapa y administrar sus registros mediante una API REST. Los datos se guardan en MongoDB en memoria; no es necesario instalar MongoDB por separado.
+
+REQUISITOS
+- Node.js LTS y NPM.
+- Git y una cuenta de Bitbucket.
+- Postman para probar la API.
+
+INSTALACION Y EJECUCION
+1. Descomprimir el proyecto y abrir la carpeta bicicletas-api en Visual Studio Code.
+2. Ejecutar: npm install
+3. Ejecutar: npm run devstart
+4. Abrir: http://localhost:3000
+
+La primera ejecucion puede tardar porque mongodb-memory-server descarga el binario de MongoDB correspondiente al sistema operativo. Se necesita Internet para esa descarga inicial.
+
+BIENVENIDA
+La pagina principal muestra el mensaje Welcome to Express y el mapa.
+
+MAPA
+El mapa usa Leaflet y OpenStreetMap, centrado en Tegucigalpa, Honduras. Incluye dos bicicletas de ejemplo cerca del centro. Se necesita Internet para cargar los mosaicos del mapa.
+
+ENDPOINTS
+Base URL: http://localhost:3000/api/bicicletas
+
+GET    /api/bicicletas       Lista todas las bicicletas.
+GET    /api/bicicletas/:id   Consulta una bicicleta por identificador.
+POST   /api/bicicletas       Registra una bicicleta.
+PUT    /api/bicicletas/:id   Actualiza una bicicleta.
+DELETE /api/bicicletas/:id   Elimina una bicicleta.
+
+EJEMPLO DE CUERPO JSON PARA POST
+{
+  "codigo": "BICI-003",
+  "color": "Roja",
+  "ubicacion": {
+    "lat": 14.1010,
+    "lng": -87.2040
+  },
+  "disponible": true
+}
+
+POSTMAN
+Importar postman/Bicicletas-API.postman_collection.json en Postman. Iniciar el servidor y ejecutar las solicitudes. La solicitud de listado guarda automáticamente un ID para consultar; la solicitud POST crea un registro y guarda su ID para las pruebas de actualizar y eliminar.
+
+GIT Y BITBUCKET
+Desde la terminal, dentro de la carpeta del proyecto:
+1. git init
+2. git add .
+3. git commit -m "Proyecto inicial de Bicicletas API"
+4. Crear un repositorio vacio en Bitbucket.
+5. Copiar la URL HTTPS del repositorio y ejecutar:
+   git remote add origin URL_DEL_REPOSITORIO
+6. git branch -M main
+7. git push -u origin main
+
+El archivo README de la raiz contiene texto plano.
+
+NOTAS
+- Las bicicletas se guardan en MongoDB en memoria y se pierden al detener el servidor.
+- El mapa necesita conexion a Internet.
+- Proyecto academico: no incluye autenticacion ni configuracion de produccion.
